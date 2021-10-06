@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from datetime import datetime
 from nltk.sentiment import SentimentAnalyzer, SentimentIntensityAnalyzer
 import pandas as pd
@@ -28,7 +28,7 @@ app = Flask(__name__)
 # route home 
 @app.route("/")
 def home():
-    return "<html><h1>Sentiment Analyzer API</h1></html>"
+    return render_template('index.html')
 
 # route test to check if active
 @app.route("/test")
