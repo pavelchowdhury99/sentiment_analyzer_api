@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT app:sentiment_analyzer
+web: gunicorn --bind 0.0.0.0:$PORT sentiment_analyzer:app
