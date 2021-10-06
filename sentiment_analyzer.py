@@ -5,6 +5,8 @@ import pandas as pd
 import numpy as np
 import nltk
 
+nltk.download('vader_lexicon')
+
 def get_sentiment_and_scores(text:str) ->dict:
     # get sentiments from ntlk
     sia = SentimentIntensityAnalyzer()
