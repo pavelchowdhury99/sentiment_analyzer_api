@@ -1,4 +1,7 @@
-from flask import Flask, jsonify, request, render_template
+from typing import Optional
+from fastapi import FastAPI
+from pydantic import BaseModel
+# from flask import Flask, jsonify, request, render_template
 from datetime import datetime
 from nltk.sentiment import SentimentAnalyzer, SentimentIntensityAnalyzer
 import pandas as pd
@@ -23,23 +26,26 @@ def get_sentiment_and_scores(text:str) ->dict:
 # get_sentiment_and_scores("Wow, NLTK is really powerful!")
 
 ## flask app
-app = Flask(__name__)
+app = FastAPI()
 
-# route home 
-@app.route("/")
-def home():
-    return render_template('index.html')
+# # route home 
+# @app.route("/")
+# def home():
+#     return render_template('index.html')
+
+class Text(BaseModel):
+    text:str
 
 # route test to check if active
-@app.route("/test")
+@app.get("/test")
 def test_api():
-    return jsonify({"status":"OK","time":datetime.now()})
+    return dict(status="OK",time=datetime.now())
 
 # route to predict the sentiment and give scores
-@app.route("/predict", methods=['POST'])
-def predict_sentiment():
-    text = request.json.get("text")
-    return jsonify(get_sentiment_and_scores(text))
+@app.post("/predict")
+def predict_sentiment(text: Text):
+    # text = request.json.get("text")
+    return get_sentiment_and_scores(text.text)
 
-if __name__=="__main__":
-    app.run(debug=True,port=5000)
+# if __name__=="__main__":
+#     app.run(debug=True,port=5000)
