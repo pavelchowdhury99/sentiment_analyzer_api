@@ -1,2 +1,3 @@
-# sentiment_analyzer_dashboard_api
-A repo for analyzing sentiments over REST API
+## Refereces
+1. [How to download nltk packages in heruko deployement](https://devcenter.heroku.com/articles/python-nltk).
+2. 
