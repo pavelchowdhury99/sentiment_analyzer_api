@@ -14,8 +14,8 @@ def get_sentiment_and_polarity_score(text: str) -> dict:
     """Return a dict of polarity_score and final Sentiment"""
     sentiment_intensity_analyzer = SentimentIntensityAnalyzer()
     scores = sentiment_intensity_analyzer.polarity_scores(text)
-    senti = "Positive" if scores.get("compound") >= 0.05 else "Negative" \
-        if scores.get("compound") <= -0.05 else "Neutral"
+    senti = "Positive" if scores.get("compound") >= 0.5 else "Negative" \
+        if scores.get("compound") <= -0.5 else "Neutral"
     return {"text": text, "polarity_scores": scores, "sentiment": senti}
 
 
